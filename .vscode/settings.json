@@ -1,0 +1,26 @@
+{
+    "search.exclude": {
+        "**/target": true
+    },
+    "workbench.colorTheme": "Solarized Dark",
+    "editor.fontFamily": "'MyricaM M','MyricaM',Consolas, 'Courier New', monospace",
+    "editor.suggestSelection": "first",
+    "editor.renderWhitespace": "all",
+    "editor.detectIndentation": false,
+    "workbench.iconTheme": "vscode-icons",
+    "[rust]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "matklad.rust-analyzer",
+        "editor.tabSize": 4
+    },
+    "editor.formatOnSave": true,
+    "editor.renderControlCharacters": true,
+    "rust.clippy_preference": "on",
+    "rust.rust-analyzer.releaseTag": "2020-08-31",
+    "rust-analyzer.updates.askBeforeDownload": false,
+    "rust-analyzer.updates.channel": "stable",
+    "rust-analyzer.trace.server": "verbose",
+    "rust-analyzer.checkOnSave.command": "clippy",
+    "lldb.libpython": ""
+    //"rust.rust-analyzer.path": "/root/.vscode-server/data/User/globalStorage/matklad.rust-analyzer/rust-analyzer-linux",
+}
