@@ -27,9 +27,9 @@ pub async fn run() -> Result<Output, Box<dyn std::error::Error>> {
 fn generate_message() -> String {
     let tz = chrono_tz::Asia::Tokyo;
     let now = Utc::now().with_timezone(&tz);
-    let shikenbi = Utc.ymd(2021, 4, 18).with_timezone(&tz);
+    let shikenbi = Utc.ymd(2021, 10, 21).with_timezone(&tz);
     format!(
-        "ネットワークスペシャリスト試験まで{}日です。勉強してください。",
+        "エンベデッドシステムスペシャリスト試験まで{}日です。勉強してください。",
         (shikenbi - now.date()).num_days()
     )
 }
@@ -66,7 +66,7 @@ fn generate_header(token: &str) -> HeaderMap {
 fn aa() {
     let tz = chrono_tz::Asia::Tokyo;
     let datetime = Utc::now().with_timezone(&tz);
-    let aaa = Utc.ymd(2021, 4, 18).with_timezone(&tz);
+    let aaa = Utc.ymd(2021, 10, 21).with_timezone(&tz);
     dbg!(datetime);
     dbg!(aaa);
     dbg!((aaa - datetime.date()).num_days());
