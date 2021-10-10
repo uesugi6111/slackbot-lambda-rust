@@ -12,6 +12,8 @@ pub struct Output {
 }
 
 pub async fn run() -> Result<Output, Box<dyn std::error::Error>> {
+    dotenv::dotenv().ok();
+
     let message = generate_message();
     let body = generate_post_body(&dotenv::var("channel").unwrap(), &message);
     let resp = post_message(body, &dotenv::var("token").unwrap()).await?;
@@ -43,6 +45,7 @@ async fn post_message(
     body: HashMap<String, String>,
     token: &str,
 ) -> Result<Response, Box<dyn std::error::Error>> {
+    dbg!(&body);
     let client = reqwest::Client::new();
     let resp = client
         .post("https://slack.com/api/chat.postMessage")
@@ -55,7 +58,7 @@ async fn post_message(
 
 fn generate_post_body(channel: &str, message: &str) -> HashMap<String, String> {
     let mut body = HashMap::new();
-    body.insert("channel".to_string(), channel.to_string());
+    body.insert("channel".to_string(), "#".to_owned() + channel);
     body.insert("text".to_string(), message.to_string());
     body
 }
@@ -83,5 +86,20 @@ mod tests {
     #[test]
     fn aaa() {
         dbg!(generate_message());
+    }
+    #[tokio::test]
+    async fn run_test() {
+        dbg!(run().await.unwrap());
+    }
+
+    use dotenv::dotenv;
+    use std::env;
+    #[test]
+    fn main_m() {
+        dotenv().ok();
+
+        for (key, value) in env::vars() {
+            println!("{}: {}", key, value);
+        }
     }
 }
