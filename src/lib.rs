@@ -75,7 +75,7 @@ mod tests {
     fn aa() {
         let tz = chrono_tz::Asia::Tokyo;
         let datetime = Utc::now().with_timezone(&tz);
-        let aaa = Utc.ymd(2021, 6, 132).with_timezone(&tz);
+        let aaa = Utc.ymd(2021, 6, 13).with_timezone(&tz);
         dbg!(datetime);
         dbg!(aaa);
         dbg!((aaa - datetime.date()).num_days());

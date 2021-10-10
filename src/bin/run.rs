@@ -1,18 +1,16 @@
-use lambda_runtime::{error::HandlerError, lambda, Context};
-
+use lambda_runtime::{handler_fn, Context, Error};
 use slack_bot_lambda::{run, Output};
 
-async fn handler(
-    _event: std::collections::HashMap<String, String>,
-    _context: Context,
-) -> Result<Output, HandlerError> {
+async fn func(_: std::collections::HashMap<String, String>, _: Context) -> Result<Output, Error> {
     Ok(run().await.unwrap_or(Output {
         message: "error".to_string(),
     }))
 }
 
-fn main() {
+#[tokio::main]
+async fn main() -> Result<(), Error> {
     openssl_probe::init_ssl_cert_env_vars();
-    let rt = tokio::runtime::Runtime::new().unwrap();
-    lambda!(move |event, context| rt.block_on(handler(event, context)));
+    let func = handler_fn(func);
+    lambda_runtime::run(func).await?;
+    Ok(())
 }
