@@ -30,9 +30,9 @@ fn generate_message() -> String {
     let nokori = (Utc.ymd(2022, 4, 17).with_timezone(&tz) - now.date()).num_days();
 
     match nokori.cmp(&0) {
-        Ordering::Greater => "試験日が過ぎています。終わりました。".to_owned(),
-        Ordering::Less => "試験日当日です。".to_owned(),
-        Ordering::Equal => format!(
+        Ordering::Less => "試験日が過ぎています。終わりました。".to_owned(),
+        Ordering::Equal => "試験日当日です。".to_owned(),
+        Ordering::Greater => format!(
             "ネットワークスペシャリスト試験まで{}日です。勉強してください。",
             nokori
         ),
@@ -67,12 +67,21 @@ fn generate_header(token: &str) -> HeaderMap {
     header
 }
 
-#[test]
-fn aa() {
-    let tz = chrono_tz::Asia::Tokyo;
-    let datetime = Utc::now().with_timezone(&tz);
-    let aaa = Utc.ymd(2021, 6, 132).with_timezone(&tz);
-    dbg!(datetime);
-    dbg!(aaa);
-    dbg!((aaa - datetime.date()).num_days());
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn aa() {
+        let tz = chrono_tz::Asia::Tokyo;
+        let datetime = Utc::now().with_timezone(&tz);
+        let aaa = Utc.ymd(2021, 6, 132).with_timezone(&tz);
+        dbg!(datetime);
+        dbg!(aaa);
+        dbg!((aaa - datetime.date()).num_days());
+    }
+    #[test]
+    fn aaa() {
+        dbg!(generate_message());
+    }
 }
