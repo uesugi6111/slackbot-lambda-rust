@@ -29,7 +29,7 @@ pub async fn run() -> Result<Output, Box<dyn std::error::Error>> {
 fn generate_message() -> String {
     let tz = chrono_tz::Asia::Tokyo;
     let now = Utc::now().with_timezone(&tz);
-    let nokori = (Utc.ymd(2022, 4, 17).with_timezone(&tz) - now.date()).num_days();
+    let nokori = (Utc.ymd(2022, 10, 9).with_timezone(&tz) - now.date()).num_days();
 
     match nokori.cmp(&0) {
         Ordering::Less => "試験日が過ぎています。終わりました。".to_owned(),
