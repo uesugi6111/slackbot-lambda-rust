@@ -35,7 +35,7 @@ fn generate_message() -> String {
         Ordering::Less => "試験日が過ぎています。終わりました。".to_owned(),
         Ordering::Equal => "試験日当日です。".to_owned(),
         Ordering::Greater => format!(
-            "ネットワークスペシャリスト試験まで{}日です。勉強してください。",
+            "情報処理安全確保支援士試験試験まで{}日です。勉強してください。",
             nokori
         ),
     }
